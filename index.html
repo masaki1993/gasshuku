@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プログラミングを楽しもう！</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        .text {
+            width: 50%;
+            padding-right: 20px;
+        }
+        .image {
+            width: 40%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .bottom-image {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 80%;
+            max-height: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>プログラミングを楽しもう！</h1>
+        <div class="content">
+            <div class="text">
+                <h2>コンピュータで<br>いろんなものを作ってみよう！</h2>
+            </div>
+            <div class="image">
+                <img src="./images/top.webp" alt="Programming introduction">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>プログラミングってなに？</h1>
+        <div class="content">
+            <div class="text">
+                <p>プログラミングは、コンピュータに指示（しじ）することだよ（「こうしてね」と教（おし）える）。</p>
+                <ul>
+                    <li>ゲームを作（つく）る 🎮</li>
+                    <li>ロボットを動（うご）かす 🤖</li>
+                </ul>
+                <p>例（れい）えば、冷蔵庫（れいぞうこ）・炊飯器（すいはんき）、ATM・レジ、ルンバ、お風呂（ふろ）のスイッチ</p>
+            </div>
+            <div class="image">
+                <img src="./images/various_programming.webp" alt="Various programming examples">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>さらに、</h1>
+        <div class="content">
+            <div class="text">
+                <p>世（よ）の中（なか）でプログラミングはこんなふうに使（つか）われているよ！</p>
+                <ol>
+                    <li>スマートフォンのアプリ 📱</li>
+                    <li>自動運転車（じどううんてんしゃ）🚗</li>
+                    <li>ゲーム開発（かいはつ）🎮</li>
+                    <li>天気予報（てんきよほう）🌤️</li>
+                </ol>
+                <p>あとはどのようなことに使（つか）われているかな？</p>
+            </div>
+            <div class="image">
+                <img src="https://api.placeholder.com/400x300" alt="Programming applications">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>この動画（どうが）を見（み）てみよう</h1>
+        <div class="content">
+            <div class="text">
+                <p>ロボット<br>
+                <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=476&out=673">https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=476&out=673</a></p>
+                <p>自動運転（じどううんてん）<br>
+                <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810">https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>自動運転（じどううんてん）・ロボット</h1>
+        <div class="content">
+            <div class="text">
+                <p>プログラミングの力（ちから）で動（うご）いているよ。</p>
+                <ul>
+                    <li>障害物（しょうがいぶつ）をさける</li>
+                    <li>信号（しんごう）を認識（にんしき）する</li>
+                </ul>
+                <p>・センサーやカメラで周（まわ）りの状況（じょうきょう）を把握（はあく）していたね！<br>
+                ・動物（どうぶつ）の筋肉（きんにく）のうごきをよくみよう</p>
+            </div>
+            <div class="image">
+                <img src="./images/camera.webp" alt="Camera and sensors">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>ゲーム開発（かいはつ）</h1>
+        <div class="content">
+            <div class="text">
+                <p>ゲームも、プログラミングで作（つく）られているよ！</p>
+                <ul>
+                    <li>キャラクターの動（うご）き</li>
+                    <li>ゲームの世界（せかい）</li>
+                    <li>得点計算（とくてんけいさん）</li>
+                </ul>
+            </div>
+            <div class="image">
+                <img src="./images/game_development.webp" alt="Game development">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>今回（こんかい）は、、</h1>
+        <div class="content">
+            <div class="text">
+                <p>プログラミングを使（つか）って、環境問題（かんきょうもんだい）に貢献（こうけん）しよう</p>
+            </div>
+        </div>
+        <img src="./images/whats-pic-sdgs.png" alt="SDGs" class="bottom-image">
+    </div>
+
+    <div class="slide">
+        <h1>まとめ</h1>
+        <div class="content">
+            <div class="text">
+                <ul>
+                    <li>プログラミングは楽（たの）しい！ 😊</li>
+                    <li>チームで好（す）きなものを作（つく）ってみよう！</li>
+                    <li>いろんなことができるよ！ 🌟</li>
+                    <li>失敗（しっぱい）しても大丈夫（だいじょうぶ）、どんどん挑戦（ちょうせん）しよう！ 💪</li>
+                    <li>世（よ）の中（なか）のいろんなところで使（つか）われているんだ！ 🌍</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>質問（しつもん）タイム</h1>
+        <div class="content">
+            <div class="text">
+                <p>何（なに）か聞（き）きたいことはある？</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>AIを使ってみよう！</h1>
+        <div class="content">
+            <div class="text">
+                <ul>
+                    <li>物語を作ろう　ChatGPT</li>
+                    <li>音楽を作ろう　SunoAI</li>
+                    <li>声や音を作ろう　ElevenLabs</li>
+                    <li>ゲームを作ろう　Claude</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
