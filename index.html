@@ -119,6 +119,11 @@
             margin-top: 20px;
             font-weight: bold;
         }
+        #gameCanvas {
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #ffffff;
+        }
 
         @media (min-width: 768px) {
             .content {
@@ -263,6 +268,17 @@
     </div>
 
     <div class="slide">
+        <h1>スペースシューターゲームを遊んでみよう！</h1>
+        <div class="content">
+            <div class="text">
+                <p>このゲームもJavaScriptで作られています。より複雑なゲームの例です。</p>
+                <p>矢印キーで移動し、スペースキーで射撃します。エイリアンを倒してスコアを稼ごう！</p>
+            </div>
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
+    </div>
+
+    <div class="slide">
         <h1>SDGsに貢献しよう</h1>
         <div class="content">
             <div class="text">
@@ -311,6 +327,7 @@
     </div>
 
     <script>
+        // Number Guessing Game (continued)
         let secretNumber = Math.floor(Math.random() * 100) + 1;
         let attempts = 0;
         function checkGuess() {
@@ -336,6 +353,198 @@
             
             document.getElementById('guessInput').value = '';
         }
+
+        // Space Shooter Game
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const player = {
+            x: canvas.width / 2,
+            y: canvas.height - 50,
+            width: 60,
+            height: 40,
+            speed: 5
+        };
+
+        const enemies = [];
+        const bullets = [];
+        const stars = [];
+        let score = 0;
+        let keys = {};
+        let aliensDirection = 1;
+        let aliensStep = 0;
+
+        function initEnemies() {
+            const colors = ['#FF69B4', '#00FF00', '#FF0000', '#FFFF00'];
+            const rows = 4;
+            const cols = 10;
+            const enemyWidth = 40;
+            const enemyHeight = 30;
+            const padding = 20;
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    enemies.push({
+                        x: col * (enemyWidth + padding) + padding,
+                        y: row * (enemyHeight + padding) + padding,
+                        width: enemyWidth,
+                        height: enemyHeight,
+                        color: colors[row % colors.length]
+                    });
+                }
+            }
+        }
+
+        function initStars() {
+            for (let i = 0; i < 100; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2
+                });
+            }
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = '#4169E1';
+            ctx.beginPath();
+            ctx.moveTo(player.x, player.y);
+            ctx.lineTo(player.x - player.width / 2, player.y + player.height);
+            ctx.lineTo(player.x + player.width / 2, player.y + player.height);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = '#87CEFA';
+            ctx.fillRect(player.x - 5, player.y + 10, 10, 20);
+        }
+
+        function drawEnemies() {
+            enemies.forEach(enemy => {
+                ctx.fillStyle = enemy.color;
+                
+                ctx.beginPath();
+                ctx.ellipse(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 
+                            enemy.width / 2, enemy.height / 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(enemy.x + enemy.width / 3, enemy.y + enemy.height / 3, 5, 0, Math.PI * 2);
+                ctx.arc(enemy.x + (enemy.width / 3) * 2, enemy.y + enemy.height / 3, 5, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'black';
+                ctx.beginPath();
+                ctx.arc(enemy.x + enemy.width / 3, enemy.y + enemy.height / 3, 2, 0, Math.PI * 2);
+                ctx.arc(enemy.x + (enemy.width / 3) * 2, enemy.y + enemy.height / 3, 2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function drawBullets() {
+            bullets.forEach(bullet => {
+                ctx.fillStyle = '#FF0';
+                ctx.fillRect(bullet.x - 3, bullet.y, 6, 15);
+            });
+        }
+
+        function drawStars() {
+            ctx.fillStyle = 'white';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function movePlayer() {
+            if (keys.ArrowLeft && player.x > player.width / 2) {
+                player.x -= player.speed;
+            }
+            if (keys.ArrowRight && player.x < canvas.width - player.width / 2) {
+                player.x += player.speed;
+            }
+        }
+
+        function moveEnemies() {
+            aliensStep += 1;
+            if (aliensStep % 60 === 0) {  // Move every 60 frames (about 1 second)
+                let moveDown = false;
+                enemies.forEach(enemy => {
+                    enemy.x += 5 * aliensDirection;
+                    if (enemy.x <= 0 || enemy.x + enemy.width >= canvas.width) {
+                        moveDown = true;
+                    }
+                });
+                if (moveDown) {
+                    enemies.forEach(enemy => enemy.y += 10);
+                    aliensDirection *= -1;
+                }
+            }
+        }
+
+        function moveBullets() {
+            bullets.forEach(bullet => {
+                bullet.y -= 10;
+                if (bullet.y < 0) {
+                    bullets.splice(bullets.indexOf(bullet), 1);
+                }
+            });
+        }
+
+        function checkCollisions() {
+            bullets.forEach(bullet => {
+                enemies.forEach(enemy => {
+                    if (bullet.x < enemy.x + enemy.width &&
+                        bullet.x + 6 > enemy.x &&
+                        bullet.y < enemy.y + enemy.height &&
+                        bullet.y + 15 > enemy.y) {
+                        enemies.splice(enemies.indexOf(enemy), 1);
+                        bullets.splice(bullets.indexOf(bullet), 1);
+                        score += 10;
+                    }
+                });
+            });
+        }
+
+        function drawScore() {
+            ctx.fillStyle = 'white';
+            ctx.font = '20px Arial';
+            ctx.fillText(`Score: ${score}`, 10, 30);
+        }
+
+        function gameLoop() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            drawStars();
+            movePlayer();
+            moveEnemies();
+            drawPlayer();
+            drawEnemies();
+            drawBullets();
+            drawScore();
+            
+            moveBullets();
+            checkCollisions();
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            keys[e.code] = true;
+            if (e.code === 'Space') {
+                bullets.push({x: player.x, y: player.y});
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            keys[e.code] = false;
+        });
+
+        initEnemies();
+        initStars();
+        gameLoop();
     </script>
 </body>
 </html>
