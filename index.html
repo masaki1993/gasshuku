@@ -158,7 +158,9 @@
         <h1>プログラミングを楽しもう！</h1>
         <div class="content">
             <div class="text">
-                <p>コンピュータでいろんなものを作ってみよう！</p>
+                <p>プログラミングって、なんだろう？<br><br>コンピュータでいろんなものを作ってみよう！</p>
+
+                <br><p>えすこーとプログラミング合宿 2024 </p>
             </div>
             <div class="image">
                 <img src="./images/top.webp" alt="Programming introduction">
@@ -187,17 +189,16 @@
         <h1>プログラミングの応用</h1>
         <div class="content">
             <div class="text">
-                <p>世（よ）の中（なか）でプログラミングはこんなふうに使（つか）われているよ！</p>
+                <p>世（よ）の中（なか）でプログラミングはこんなふうに人々の役に立っているよ！</p>
                 <ol>
                     <li>スマートフォンのアプリ 📱</li>
                     <li>自動運転車（じどううんてんしゃ）🚗</li>
-                    <li>ゲーム開発（かいはつ）🎮</li>
                     <li>天気予報（てんきよほう）🌤️</li>
                 </ol>
                 <p>あとはどのようなことに使（つか）われているかな？</p>
             </div>
             <div class="image">
-                <img src="/api/placeholder/400/300" alt="Programming applications">
+                <img src="./images/inlike.webp" alt="Programming applications">
             </div>
         </div>
     </div>
@@ -206,9 +207,9 @@
         <h1>動画で学ぼう</h1>
         <div class="content">
             <div class="text">
-                <p>ロボット<br>
+                <p>
                 <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=476&out=673">ロボットの動画を見る</a></p>
-                <p>自動運転（じどううんてん）<br>
+                <p>
                 <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810">自動運転の動画を見る</a></p>
             </div>
         </div>
@@ -227,7 +228,7 @@
                 ・動物（どうぶつ）の筋肉（きんにく）のうごきをよくみよう</p>
             </div>
             <div class="image">
-                <img src="./images/camera.webp" alt="Camera and sensors">
+                <img src="./images/camera.png" alt="Camera and sensors">
             </div>
         </div>
     </div>
@@ -244,7 +245,7 @@
                 </ul>
             </div>
             <div class="image">
-                <img src="./images/game_development.webp" alt="Game development">
+                <img src="https://cdn.midjourney.com/9499a821-2f5b-44ee-96ba-5bf75fad6499/0_1.png" alt="Game development">
             </div>
         </div>
     </div>
@@ -272,7 +273,7 @@
         <div class="content">
             <div class="text">
                 <p>このゲームもJavaScriptで作られています。より複雑なゲームの例です。</p>
-                <p>矢印キーで移動し、スペースキーで射撃します。エイリアンを倒してスコアを稼ごう！</p>
+                <p>矢印キーで移動し、Sキーで射撃します。エイリアンを倒してスコアを稼ごう！</p>
             </div>
             <canvas id="gameCanvas" width="800" height="600"></canvas>
         </div>
@@ -356,23 +357,23 @@
 
         // Space Shooter Game
         const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
 
-        const player = {
-            x: canvas.width / 2,
-            y: canvas.height - 50,
-            width: 60,
-            height: 40,
-            speed: 5
-        };
+    const player = {
+        x: canvas.width / 2,
+        y: canvas.height - 50,
+        width: 60,
+        height: 40,
+        speed: 5
+    };
 
-        const enemies = [];
-        const bullets = [];
-        const stars = [];
-        let score = 0;
-        let keys = {};
-        let aliensDirection = 1;
-        let aliensStep = 0;
+    const enemies = [];
+    const bullets = [];
+    const stars = [];
+    let score = 0;
+    let keys = {};
+    let aliensDirection = 1;
+    let aliensStep = 0;
 
         function initEnemies() {
             const colors = ['#FF69B4', '#00FF00', '#FF0000', '#FFFF00'];
@@ -514,37 +515,38 @@
         }
 
         function gameLoop() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            drawStars();
-            movePlayer();
-            moveEnemies();
-            drawPlayer();
-            drawEnemies();
-            drawBullets();
-            drawScore();
-            
-            moveBullets();
-            checkCollisions();
-            
-            requestAnimationFrame(gameLoop);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        drawStars();
+        movePlayer();
+        moveEnemies();
+        drawPlayer();
+        drawEnemies();
+        drawBullets();
+        drawScore();
+        
+        moveBullets();
+        checkCollisions();
+        
+        requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        keys[e.code] = true;
+        // Change here: Use 'KeyS' instead of 'Space' for shooting
+        if (e.code === 'KeyS') {
+            bullets.push({x: player.x, y: player.y});
         }
+    });
 
-        document.addEventListener('keydown', (e) => {
-            keys[e.code] = true;
-            if (e.code === 'Space') {
-                bullets.push({x: player.x, y: player.y});
-            }
-        });
+    document.addEventListener('keyup', (e) => {
+        keys[e.code] = false;
+    });
 
-        document.addEventListener('keyup', (e) => {
-            keys[e.code] = false;
-        });
-
-        initEnemies();
-        initStars();
-        gameLoop();
-    </script>
+    initEnemies();
+    initStars();
+    gameLoop();
+</script>
 </body>
 </html>
