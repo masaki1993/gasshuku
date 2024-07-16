@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>プログラミングを楽しもう！</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            overflow: hidden;
         }
         .slide {
             width: 100vw;
             height: 100vh;
-            display: flex;
+            display: none;
             flex-direction: column;
             justify-content: center;
-            padding: 20px;
+            padding: 40px;
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .slide.active {
+            display: flex;
         }
         h1 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            margin: 0;
-            padding: 10px;
-            background: rgba(255,255,255,0.7);
+            font-size: 5vw;
+            margin: 0 0 20px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .content {
             display: flex;
@@ -40,36 +46,62 @@
         }
         .text {
             width: 50%;
-            padding-right: 20px;
+            padding-right: 40px;
+        }
+        .text p, .text li {
+            font-size: 2.5vw;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
         .image {
-            width: 40%;
+            width: 45%;
             height: 80%;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
         }
         .image img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .image:hover img {
+            transform: scale(1.05);
         }
         .bottom-image {
             position: absolute;
-            bottom: 10px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             max-width: 80%;
-            max-height: 60%;
+            max-height: 30%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        ul, ol {
+            padding-left: 30px;
+        }
+        a {
+            color: #4a9ff5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #7cb9f8;
         }
     </style>
 </head>
 <body>
-    <div class="slide">
+    <div class="slide active">
         <h1>プログラミングを楽しもう！</h1>
         <div class="content">
             <div class="text">
-                <h2>コンピュータで<br>いろんなものを作ってみよう！</h2>
+                <p>コンピュータで<br>いろんなものを作ってみよう！</p>
             </div>
             <div class="image">
                 <img src="./images/top.webp" alt="Programming introduction">
@@ -207,5 +239,36 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            slides[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+    </script>
 </body>
 </html>
