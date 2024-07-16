@@ -21,9 +21,12 @@
             box-sizing: border-box;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-bottom: 2px solid #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         h1 {
-            font-size: 24px;
+            font-size: 2.5em;
             margin: 0 0 20px 0;
             padding: 10px;
             background: rgba(255,255,255,0.1);
@@ -35,18 +38,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .text {
             width: 100%;
             margin-bottom: 20px;
         }
         .text p, .text li {
-            font-size: 16px;
+            font-size: 1.2em;
             margin-bottom: 10px;
         }
         .image {
             width: 100%;
-            max-width: 300px;
+            max-width: 500px;
             height: auto;
             display: flex;
             justify-content: center;
@@ -81,12 +86,41 @@
         a:hover {
             color: #7cb9f8;
         }
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            margin: 20px auto;
+            color: #333;
+        }
+        .game-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .game-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .game-container button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
 
-        /* Tablet styles */
         @media (min-width: 768px) {
-            h1 {
-                font-size: 36px;
-            }
             .content {
                 flex-direction: row;
                 justify-content: space-between;
@@ -96,46 +130,20 @@
                 width: 50%;
                 padding-right: 20px;
             }
-            .text p, .text li {
-                font-size: 18px;
-            }
             .image {
                 width: 45%;
-                max-width: none;
             }
         }
 
-        /* Desktop styles */
         @media (min-width: 1024px) {
             h1 {
-                font-size: 60px;
-                padding: 20px;
+                font-size: 3em;
             }
             .text p, .text li {
-                font-size: 28px;
+                font-size: 1.4em;
             }
             .slide {
                 padding: 40px;
-            }
-            .content {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            .image {
-                max-height: 500px;
-            }
-            .image img {
-                object-fit: contain;
-            }
-        }
-
-        /* Large desktop styles */
-        @media (min-width: 1440px) {
-            h1 {
-                font-size: 72px;
-            }
-            .text p, .text li {
-                font-size: 32px;
             }
         }
     </style>
@@ -145,7 +153,7 @@
         <h1>プログラミングを楽しもう！</h1>
         <div class="content">
             <div class="text">
-                <p>コンピュータで<br>いろんなものを作ってみよう！</p>
+                <p>コンピュータでいろんなものを作ってみよう！</p>
             </div>
             <div class="image">
                 <img src="./images/top.webp" alt="Programming introduction">
@@ -170,9 +178,8 @@
         </div>
     </div>
 
-
     <div class="slide">
-        <h1>さらに、</h1>
+        <h1>プログラミングの応用</h1>
         <div class="content">
             <div class="text">
                 <p>世（よ）の中（なか）でプログラミングはこんなふうに使（つか）われているよ！</p>
@@ -185,25 +192,25 @@
                 <p>あとはどのようなことに使（つか）われているかな？</p>
             </div>
             <div class="image">
-                <img src="https://api.placeholder.com/400x300" alt="Programming applications">
+                <img src="/api/placeholder/400/300" alt="Programming applications">
             </div>
         </div>
     </div>
 
     <div class="slide">
-        <h1>この動画（どうが）を見（み）てみよう</h1>
+        <h1>動画で学ぼう</h1>
         <div class="content">
             <div class="text">
                 <p>ロボット<br>
-                <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=476&out=673">https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=476&out=673</a></p>
+                <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=476&out=673">ロボットの動画を見る</a></p>
                 <p>自動運転（じどううんてん）<br>
-                <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810">https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810</a></p>
+                <a href="https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810">自動運転の動画を見る</a></p>
             </div>
         </div>
     </div>
 
     <div class="slide">
-        <h1>自動運転（じどううんてん）・ロボット</h1>
+        <h1>自動運転とロボット</h1>
         <div class="content">
             <div class="text">
                 <p>プログラミングの力（ちから）で動（うご）いているよ。</p>
@@ -238,7 +245,25 @@
     </div>
 
     <div class="slide">
-        <h1>今回（こんかい）は、、</h1>
+        <h1>数字当てゲームを遊んでみよう！</h1>
+        <div class="content">
+            <div class="text">
+                <p>このゲームはJavaScriptというプログラミング言語で作られています。</p>
+                <p>1から100までの数字を当ててみましょう！</p>
+            </div>
+            <div class="game-container">
+                <h2>数字当てゲーム</h2>
+                <p>1から100までの数字を考えています。</p>
+                <input type="number" id="guessInput" placeholder="数字を入力してください">
+                <button onclick="checkGuess()">推測する</button>
+                <p id="message"></p>
+                <p>試行回数: <span id="attempts">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h1>SDGsに貢献しよう</h1>
         <div class="content">
             <div class="text">
                 <p>プログラミングを使（つか）って、環境問題（かんきょうもんだい）に貢献（こうけん）しよう</p>
@@ -284,5 +309,33 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        function checkGuess() {
+            let guess = parseInt(document.getElementById('guessInput').value);
+            let message = document.getElementById('message');
+            
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.textContent = '1から100までの有効な数字を入力してください。';
+                return;
+            }
+            
+            attempts++;
+            document.getElementById('attempts').textContent = attempts;
+            
+            if (guess === secretNumber) {
+                message.textContent = `おめでとうございます！${attempts}回の試行で数字を当てました！`;
+                document.querySelector('.game-container button').disabled = true;
+            } else if (guess < secretNumber) {
+                message.textContent = 'もっと大きい数字です。もう一度挑戦してください。';
+            } else {
+                message.textContent = 'もっと小さい数字です。もう一度挑戦してください。';
+            }
+            
+            document.getElementById('guessInput').value = '';
+        }
+    </script>
 </body>
 </html>
