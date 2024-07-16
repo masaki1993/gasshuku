@@ -82,7 +82,7 @@
             color: #7cb9f8;
         }
 
-        /* Tablet and Desktop styles */
+        /* Tablet styles */
         @media (min-width: 768px) {
             h1 {
                 font-size: 36px;
@@ -105,12 +105,37 @@
             }
         }
 
+        /* Desktop styles */
         @media (min-width: 1024px) {
             h1 {
-                font-size: 48px;
+                font-size: 60px;
+                padding: 20px;
             }
             .text p, .text li {
-                font-size: 20px;
+                font-size: 28px;
+            }
+            .slide {
+                padding: 40px;
+            }
+            .content {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .image {
+                max-height: 500px;
+            }
+            .image img {
+                object-fit: contain;
+            }
+        }
+
+        /* Large desktop styles */
+        @media (min-width: 1440px) {
+            h1 {
+                font-size: 72px;
+            }
+            .text p, .text li {
+                font-size: 32px;
             }
         }
     </style>
@@ -144,6 +169,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="slide">
         <h1>さらに、</h1>
