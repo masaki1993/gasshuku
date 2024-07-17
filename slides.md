@@ -5,21 +5,7 @@ paginate: true
 backgroundColor: "#f0f8ff"
 color: "#333"
 style: |
-  img.top {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    max-width: 50%;
-    max-height: 50%;
-  }
-  img.right {
-    position: absolute;
-    top: 10%;
-    right: 10px;
-    max-width: 40%;
-    max-height: 50%;
-  }
-  img.bottom {
+  img[alt~="bottom"] {
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -37,27 +23,50 @@ style: |
     max-width: 100%;
     background: rgba(255,255,255,0.7);
   }
+  img[alt~="right"] {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 40%;
+    max-height: 80%;
+    object-fit: contain;
+  }
+  .content-left {
+    width: 50%;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 ---
+
 <!-- _class: lead _paginate: false -->
 # プログラミングを楽しもう！
 ## コンピュータで<br>いろんなものを作ってみよう！
-![top](./images/top.webp)
+![right](./images/top.webp)
 
 ---
 
 <!-- _class: lead -->
 # プログラミングってなに？
+<div class="content-left">
+
 プログラミングは、コンピュータに指示（しじ）することだよ（「こうしてね」と教（おし）える）。
 
 - ゲームを作（つく）る 🎮
 - ロボットを動（うご）かす 🤖
 
 例（れい）えば、冷蔵庫（れいぞうこ）・炊飯器（すいはんき）、ATM・レジ、ルンバ、お風呂（ふろ）のスイッチ
+</div>
+
 ![right](./images/various_programming.webp)
 
 ---
 
 # さらに、
+<div class="content-left">
+
 世（よ）の中（なか）でプログラミングはこんなふうに使（つか）われているよ！
 
 1. スマートフォンのアプリ 📱
@@ -66,6 +75,8 @@ style: |
 4. 天気予報（てんきよほう）🌤️
 
 あとはどのようなことに使（つか）われているかな？
+</div>
+
 ![right](https://api.placeholder.com/400x300)
 
 ---
@@ -81,6 +92,8 @@ https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810
 ---
 
 # 自動運転（じどううんてん）・ロボット
+<div class="content-left">
+
 プログラミングの力（ちから）で動（うご）いているよ。
 
 - 障害物（しょうがいぶつ）をさける
@@ -88,17 +101,22 @@ https://www2.nhk.or.jp/kokokoza/watch/?das_id=D0022150013_00000#in=754&out=810
 
 ・センサーやカメラで周（まわ）りの状況（じょうきょう）を把握（はあく）していたね！
 ・動物（どうぶつ）の筋肉（きんにく）のうごきをよくみよう
+</div>
+
 ![right](./images/camera.webp)
 
 ---
 
 <!-- _class: lead -->
 # ゲーム開発（かいはつ）
+<div class="content-left">
+
 ゲームも、プログラミングで作（つく）られているよ！
 
 - キャラクターの動（うご）き
 - ゲームの世界（せかい）
 - 得点計算（とくてんけいさん）
+</div>
 
 ![right](./images/game_development.webp)
 
