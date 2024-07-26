@@ -232,6 +232,164 @@
             </div>
         </div>
     </div>
+    <div class="slide">
+        <h1>レゴプログラミング説明ゲーム</h1>
+        <p>「パーツ」枠（点線）から適切なパーツを「トリガー」または「動作」の枠（実線）にドラッグ＆ドロップしてください。すべてのパーツを配置したら、「確認」ボタンを押してください。</p>
+        
+        <!-- 以下の内容を追加 -->
+        <p>ロボットや自動運転車には、大切な2つの要素があるよ：</p>
+        <ul>
+            <li>センサー：周りの状況を感じ取る</li>
+            <li>アクチュエーター：実際に動きを作り出す</li>
+        </ul>
+        <!-- 追加内容ここまで -->
+        
+        <div class="game-area">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>レゴプログラミング説明ゲーム</title>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        margin: 0;
+                        padding: 20px;
+                        background-color: #f0f0f0;
+                    }
+                    .container {
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        background-color: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                    }
+                    h1 {
+                        text-align: center;
+                        color: #333;
+                    }
+                    .game-area {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 20px;
+                    }
+                    .column {
+                        flex: 1;
+                        margin: 0 10px;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                        padding: 10px;
+                        min-height: 300px;
+                    }
+                    .column h2 {
+                        text-align: center;
+                        color: #444;
+                        margin-top: 0;
+                    }
+                    .list {
+                        min-height: 250px;
+                        padding: 10px;
+                        border-radius: 5px;
+                    }
+                    #items {
+                        background-color: #e6f7ff;
+                        border: 2px dashed #91d5ff;
+                    }
+                    #triggers, #actions {
+                        border: 2px solid #ccc;
+                    }
+                    .item {
+                        background-color: #fff;
+                        border: 1px solid #ddd;
+                        border-radius: 5px;
+                        padding: 10px;
+                        margin: 5px 0;
+                        cursor: move;
+                    }
+                    button {
+                        display: block;
+                        width: 200px;
+                        margin: 20px auto;
+                        padding: 10px;
+                        background-color: #007bff;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                    }
+                    button:hover {
+                        background-color: #0056b3;
+                    }
+                    #result {
+                        text-align: center;
+                        font-weight: bold;
+                        margin-top: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>レゴプログラミング説明ゲーム</h1>
+                    <p>「パーツ」枠（点線）から適切なパーツを「トリガー」または「動作」の枠（実線）にドラッグ＆ドロップしてください。すべてのパーツを配置したら、「確認」ボタンを押してください。</p>
+                    <div class="game-area">
+                        <div class="column">
+                            <h2>パーツ</h2>
+                            <div id="items" class="list">
+                                <div class="item" data-type="trigger">カラーセンサー</div>
+                                <div class="item" data-type="trigger">距離センサー</div>
+                                <div class="item" data-type="trigger">ジャイロセンサー</div>
+                                <div class="item" data-type="trigger">フォースセンサー</div>
+                                <div class="item" data-type="action">モーター</div>
+                                <div class="item" data-type="action">ライト</div>
+                                <div class="item" data-type="action">サウンド</div>
+                                <div class="item" data-type="action">ライトマトリックス</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h2>トリガー</h2>
+                            <div id="triggers" class="list"></div>
+                        </div>
+                        <div class="column">
+                            <h2>動作</h2>
+                            <div id="actions" class="list"></div>
+                        </div>
+                    </div>
+                    <button onclick="checkResult()">確認</button>
+                    <div id="result"></div>
+                </div>
+            
+                <script>
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        const lists = document.querySelectorAll('.list');
+                        lists.forEach(list => {
+                            new Sortable(list, {
+                                group: 'shared',
+                                animation: 150,
+                                onAdd: function (evt) {
+                                    evt.item.style.backgroundColor = evt.to.id === 'items' ? '#fff' : '#e6f7ff';
+                                }
+                            });
+                        });
+                    });
+            
+                    function checkResult() {
+                        const triggers = document.querySelectorAll('#triggers .item');
+                        const actions = document.querySelectorAll('#actions .item');
+                        
+                        const isCorrect = Array.from(triggers).every(item => item.dataset.type === 'trigger') &&
+                                          Array.from(actions).every(item => item.dataset.type === 'action');
+                        
+                        const resultElement = document.getElementById('result');
+                        resultElement.textContent = isCorrect ? '正解！よくできました！' : '残念！もう一度試してみよう！';
+                        resultElement.style.color = isCorrect ? 'green' : 'red';
+                    }
+                </script>
+            </body>
+        </div>
+    </div>
 
     <div class="slide">
         <h1>ゲーム開発（かいはつ）</h1>
@@ -357,7 +515,7 @@
             let message = document.getElementById('message');
             
             if (isNaN(guess) || guess < 1 || guess > 100) {
-                message.textContent = '1から100までの有効な数字を入力してください。';
+                message.textContent = '1から100までの数を入れてね。';
                 return;
             }
             
