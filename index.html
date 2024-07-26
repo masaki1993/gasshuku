@@ -232,40 +232,76 @@
             </div>
         </div>
     </div>
-    <div class="slide">
-        <h1>トリガーと動作(どうさ)</h1>
-       
-        <!-- 以下の内容を追加 -->
-        <p>どのロボットにも、大切な2つのこと：</p>
-        <ul>
-            <li>トリガー：何かを認識（にんしき）する</li>
-            <li>動作（どうさ）：認識（にんしき）をふまえて、動く</li>
-        </ul>
-        <!-- 追加内容ここまで -->
         
         <div class="game-area">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              
+                <title>プログラミングを楽しもう！</title>
+                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
                 <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        line-height: 1.6;
+                    body, html {
                         margin: 0;
-                        padding: 20px;
+                        padding: 0;
+                        font-family: 'Noto Sans JP', sans-serif;
                         background-color: #1a1a2e;
+                        color: #ffffff;
+                        line-height: 1.6;
                     }
-                    .container {
+                    .slide {
+                        width: 100%;
+                        min-height: 100vh;
+                        padding: 20px;
+                        box-sizing: border-box;
+                        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                        border-bottom: 2px solid #ffffff;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                    }
+                    h1 {
+                        font-size: 2.5em;
+                        margin: 0 0 20px 0;
+                        padding: 10px;
+                        background: rgba(255,255,255,0.1);
+                        border-radius: 10px;
+                        text-align: center;
+                        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+                    }
+                    .content {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
                         max-width: 1200px;
                         margin: 0 auto;
-                        background-color: #1a1a2e;
-                        padding: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 0 10px rgba(0,0,0,0.1);
                     }
-                   
+                    .text {
+                        width: 100%;
+                        margin-bottom: 20px;
+                    }
+                    .text p, .text li {
+                        font-size: 1.2em;
+                        margin-bottom: 10px;
+                    }
+                    .image {
+                        width: 100%;
+                        max-width: 500px;
+                        height: auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: rgba(255,255,255,0.1);
+                        border-radius: 10px;
+                        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                        overflow: hidden;
+                        margin-bottom: 20px;
+                    }
+                    .image img {
+                        width: 100%;
+                        height: auto;
+                        object-fit: cover;
+                    }
                     .game-area {
                         display: flex;
                         justify-content: space-between;
@@ -274,14 +310,14 @@
                     .column {
                         flex: 1;
                         margin: 0 10px;
-                        background-color: #f9f9f9;
+                        background-color: rgba(255,255,255,0.1);
                         border-radius: 5px;
                         padding: 10px;
                         min-height: 300px;
                     }
                     .column h2 {
                         text-align: center;
-                        color: #444;
+                        color: #fff;
                         margin-top: 0;
                     }
                     .list {
@@ -289,15 +325,15 @@
                         padding: 10px;
                         border-radius: 5px;
                     }
-                    #items {
-                        background-color: #e6f7ff;
+                    #human-items, #items {
+                        background-color: rgba(230, 247, 255, 0.2);
                         border: 2px dashed #91d5ff;
                     }
-                    #triggers, #actions {
+                    #human-triggers, #human-actions, #triggers, #actions {
                         border: 2px solid #ccc;
                     }
                     .item {
-                        background-color: #1a1a2e;
+                        background-color: rgba(255, 255, 255, 0.2);
                         border: 1px solid #ddd;
                         border-radius: 5px;
                         padding: 10px;
@@ -319,7 +355,7 @@
                     button:hover {
                         background-color: #0056b3;
                     }
-                    #result {
+                    #human-result, #result {
                         text-align: center;
                         font-weight: bold;
                         margin-top: 20px;
@@ -327,34 +363,80 @@
                 </style>
             </head>
             <body>
-                <div class="container">
-                   
-                    <p>「パーツ」枠からパーツを「トリガー」または「動作」の枠（実線）にドラッグ＆ドロップしよう。すべてのパーツを配置したら、「確認」ボタンを押してね。</p>
+                <div class="slide">
+                    <h1>トリガーと動作(どうさ)</h1>
+                    
+                    <p>どのロボットにも、大切な2つのこと：</p>
+                    <ul>
+                        <li>トリガー：何かを認識（にんしき）する</li>
+                        <li>動作（どうさ）：認識（にんしき）をふまえて、動く</li>
+                    </ul>
+                    
+                    <!-- Human Parts Game -->
                     <div class="game-area">
-                        <div class="column">
-                            <h2>パーツ</h2>
-                            <div id="items" class="list">
-                                <div class="item" data-type="trigger">カラーセンサー</div>
-                                <div class="item" data-type="trigger">距離（きょり）センサー</div>
-                                <div class="item" data-type="trigger">ジャイロセンサー</div>
-                                <div class="item" data-type="trigger">フォースセンサー</div>
-                                <div class="item" data-type="action">モーター</div>
-                                <div class="item" data-type="action">ライト</div>
-                                <div class="item" data-type="action">サウンド</div>
-                                <div class="item" data-type="action">ライトマトリックス</div>
+                        <div class="container">
+                            <p>まずは人間（にんげん）で考えよう</p>
+                            <p>「パーツ」枠（わく）からパーツを「トリガー」または「動作（どうさ）」の枠（わく）（実線（じっせん））にドラッグ＆ドロップしよう。すべてのパーツを配置（はいち）したら、「確認（かくにん）」ボタンを押（お）してね。</p>
+                            <div class="game-area">
+                                <div class="column">
+                                    <h2>パーツ</h2>
+                                    <div id="human-items" class="list">
+                                        <div class="item" data-type="trigger">目（め）</div>
+                                        <div class="item" data-type="trigger">耳（みみ）</div>
+                                        <div class="item" data-type="trigger">口（くち）</div>
+                                        <div class="item" data-type="trigger">肌（はだ）</div>
+                                        <div class="item" data-type="action">筋肉（きんにく）</div>
+                                        <div class="item" data-type="action">手（て）</div>
+                                        <div class="item" data-type="action">足（あし）</div>
+                                        <div class="item" data-type="action">表情（ひょうじょう）</div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <h2>トリガー（感覚器官（かんかくきかん））</h2>
+                                    <div id="human-triggers" class="list"></div>
+                                </div>
+                                <div class="column">
+                                    <h2>動作（どうさ）（運動器官（うんどうきかん））</h2>
+                                    <div id="human-actions" class="list"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="column">
-                            <h2>トリガー</h2>
-                            <div id="triggers" class="list"></div>
-                        </div>
-                        <div class="column">
-                            <h2>動作(どうさ)</h2>
-                            <div id="actions" class="list"></div>
+                            <button onclick="checkHumanResult()">確認（かくにん）</button>
+                            <div id="human-result"></div>
                         </div>
                     </div>
-                    <button onclick="checkResult()">確認(かくにん)</button>
-                    <div id="result"></div>
+            
+                    <!-- Robot Parts Game -->
+                    <div class="game-area">
+                        <div class="container">
+                            <p>ロボットではどうかな？</p>
+                            <p>「パーツ」枠からパーツを「トリガー」または「動作」の枠（実線）にドラッグ＆ドロップしよう。すべてのパーツを配置したら、「確認」ボタンを押してね。</p>
+                            <div class="game-area">
+                                <div class="column">
+                                    <h2>パーツ</h2>
+                                    <div id="items" class="list">
+                                        <div class="item" data-type="trigger">カラーセンサー</div>
+                                        <div class="item" data-type="trigger">距離（きょり）センサー</div>
+                                        <div class="item" data-type="trigger">ジャイロセンサー</div>
+                                        <div class="item" data-type="trigger">フォースセンサー</div>
+                                        <div class="item" data-type="action">モーター</div>
+                                        <div class="item" data-type="action">ライト</div>
+                                        <div class="item" data-type="action">サウンド</div>
+                                        <div class="item" data-type="action">ライトマトリックス</div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <h2>トリガー</h2>
+                                    <div id="triggers" class="list"></div>
+                                </div>
+                                <div class="column">
+                                    <h2>動作（どうさ）</h2>
+                                    <div id="actions" class="list"></div>
+                                </div>
+                            </div>
+                            <button onclick="checkResult()">確認(かくにん)</button>
+                            <div id="result"></div>
+                        </div>
+                    </div>
                 </div>
             
                 <script>
@@ -365,11 +447,27 @@
                                 group: 'shared',
                                 animation: 150,
                                 onAdd: function (evt) {
-                                    evt.item.style.backgroundColor = evt.to.id === 'items' ? '#fff' : '#e6f7ff';
+                                    if (evt.to.id.includes('human')) {
+                                        evt.item.style.backgroundColor = evt.to.id === 'human-items' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(230, 247, 255, 0.3)';
+                                    } else {
+                                        evt.item.style.backgroundColor = evt.to.id === 'items' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(230, 247, 255, 0.3)';
+                                    }
                                 }
                             });
                         });
                     });
+            
+                    function checkHumanResult() {
+                        const triggers = document.querySelectorAll('#human-triggers .item');
+                        const actions = document.querySelectorAll('#human-actions .item');
+                        
+                        const isCorrect = Array.from(triggers).every(item => item.dataset.type === 'trigger') &&
+                                          Array.from(actions).every(item => item.dataset.type === 'action');
+                        
+                        const resultElement = document.getElementById('human-result');
+                        resultElement.textContent = isCorrect ? '正解！人間（にんげん）の体（からだ）の仕組（しく）みがよくわかりましたね！' : '残念（ざんねん）！もう一度（いちど）考（かんが）えてみよう！';
+                        resultElement.style.color = isCorrect ? '#4CAF50' : '#F44336';
+                    }
             
                     function checkResult() {
                         const triggers = document.querySelectorAll('#triggers .item');
@@ -380,7 +478,7 @@
                         
                         const resultElement = document.getElementById('result');
                         resultElement.textContent = isCorrect ? '正解！よくできました！' : '残念！もう一度試してみよう！';
-                        resultElement.style.color = isCorrect ? 'green' : 'red';
+                        resultElement.style.color = isCorrect ? '#4CAF50' : '#F44336';
                     }
                 </script>
             </body>
